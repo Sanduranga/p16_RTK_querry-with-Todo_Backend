@@ -11,4 +11,15 @@ app.use(
 );
 app.use(express.json());
 
+app.post("/todos", (req, res) => {
+  const user = new User({
+    id: req.body.id,
+    task: req.body.task,
+  });
+  user
+    .save()
+    .then((responce) => res.json({ responce }))
+    .catch((err) => res.json({ err }));
+});
+
 module.exports = app;
