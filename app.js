@@ -18,19 +18,19 @@ app.post("/todo", (req, res) => {
   });
   user
     .save()
-    .then((response) => res.json({ response }))
+    .then((response) => res.json(response))
     .catch((err) => res.json({ err }));
 });
 
 app.get("/todos", (req, res) => {
   Task.find()
-    .then((response) => res.json({ response }))
+    .then((response) => res.json(response))
     .catch((err) => res.json({ err }));
 });
 
-app.delete("/delete_todo", (req, res) => {
-  const id = req.body.id;
-  Task.deleteOne({ _id: id })
+app.delete("/delete_todo/:_id", (req, res) => {
+  const _id = req.params._id;
+  Task.deleteOne({ _id: _id })
     .then((response) => res.json({ response }))
     .catch((err) => res.json({ err }));
 });
