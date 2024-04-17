@@ -35,8 +35,10 @@ app.delete("/delete_todo/:_id", (req, res) => {
     .catch((err) => res.json({ err }));
 });
 
-app.put("/update_todo", (req, res) => {
-  const { _id, id, task } = req.body;
+app.put("/update_todo/:_id", (req, res) => {
+  const _id = req.params._id;
+  const { id, task } = req.body;
+  console.log(id, task);
   Task.findByIdAndUpdate({ _id: _id }, { id: id, task: task })
     .then((response) => res.json({ response }))
     .catch((err) => res.json({ err }));
